@@ -19,7 +19,6 @@ for i in dataSet[:3960]:
 init = Counter(countBeginTags)
 
 for key in taggim:
-
     if key not in init:
         init.update({key: 0})
 
