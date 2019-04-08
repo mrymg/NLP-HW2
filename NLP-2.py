@@ -1,10 +1,14 @@
 from collections import Counter
+import math
+import numpy as np
+
 print("-----------\n TASK 1\n-----------")
 filePath = open("metu.txt", "r", encoding="utf-8")
 read = filePath.read()
 dataSet = read.lower().split("\n")
 taggim = []
 
+wordList = []
 startProbability = dict()
 transitionProbability = dict()
 emmisionProbability = dict()
@@ -14,6 +18,8 @@ countBeginTags=[]
 for sentence in dataSet[:3960]:
    for tags in sentence.split():
        taggim.append(tags.split("/")[1])
+       wordList.append(tags.split("/")[0])
+
 
 countTaggim = Counter(taggim)
 
@@ -62,7 +68,10 @@ for k in countEmmission:
     # print("Probability of", k,":" , countEmmission[k]/countTaggim[k.split("/")[1]])
 print("Emmision Probability Dict is", emmisionProbability)
 
-print("-----------\n TASK 2 & 3\n-----------")
+print("-----------\n TASK 2 \n-----------")
 
 # -----------------------------------
 # -----------------------------------
+
+
+sentenceList = [x.split() for x in dataSet]
