@@ -5,6 +5,10 @@ read = filePath.read()
 dataSet = read.lower().split("\n")
 taggim = []
 
+
+transitionProbability = dict()
+emmisionProbability = dict()
+
 countBeginTags=[]
 
 for sentence in dataSet[:3960]:
@@ -37,16 +41,26 @@ for a in range(len(taggim)-1):
 countBigramTags = Counter(tagsBigram)
 
 # TASK 1 - 2. YI YAZDIRIR
-# for y in countBigramTags:
-#     print("Probability of",y, " :", countBigramTags[y]/countTaggim[y.split()[0]])
+for y in countBigramTags:
+    transitionProbability[y.split()[0]] = dict()
+for y in countBigramTags:
+    transitionProbability[y.split()[0]].update({y.split()[1] : countBigramTags[y]/countTaggim[y.split()[0]]})
+
+print("Transition Probability Dict is" , transitionProbability)
+
+
+
 emmisionList = read.lower().split()
 countEmmission = Counter(emmisionList)
 
 
 #  TASK 1  3. KISIM YAZDIRILIYOR
-# for k in countEmmission:
-#     print("Probability of", k,":" , countEmmission[k]/countTaggim[k.split("/")[1]])
-
+for k in countEmmission:
+    emmisionProbability[k.split("/")[1]] = dict()
+for k in countEmmission:
+    emmisionProbability[k.split("/")[1]].update({k.split("/")[0]: countEmmission[k]/countTaggim[k.split("/")[1]]})
+    # print("Probability of", k,":" , countEmmission[k]/countTaggim[k.split("/")[1]])
+print(emmisionProbability)
 
 # -----------------------------------
 # -----------------------------------
