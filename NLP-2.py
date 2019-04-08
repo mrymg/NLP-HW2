@@ -1,11 +1,11 @@
 from collections import Counter
-
+print("-----------\n TASK 1\n-----------")
 filePath = open("metu.txt", "r", encoding="utf-8")
 read = filePath.read()
 dataSet = read.lower().split("\n")
 taggim = []
 
-
+startProbability = dict()
 transitionProbability = dict()
 emmisionProbability = dict()
 
@@ -27,9 +27,9 @@ for key in taggim:
         init.update({key: 0})
 
 #  BU KOD TASK 1 A NIN SONUCU
-# for x in init:
-#     print("Probability of Starting With", x,"   : ", init[x]/3960)
-
+for x in init:
+    startProbability[x] = init[x]/3960
+print("Start Probability Dict is",startProbability)
 bigram=""
 tagsBigram = []
 
@@ -60,7 +60,9 @@ for k in countEmmission:
 for k in countEmmission:
     emmisionProbability[k.split("/")[1]].update({k.split("/")[0]: countEmmission[k]/countTaggim[k.split("/")[1]]})
     # print("Probability of", k,":" , countEmmission[k]/countTaggim[k.split("/")[1]])
-print(emmisionProbability)
+print("Emmision Probability Dict is", emmisionProbability)
+
+print("-----------\n TASK 2 & 3\n-----------")
 
 # -----------------------------------
 # -----------------------------------
